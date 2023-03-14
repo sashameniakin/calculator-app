@@ -2,6 +2,23 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    colors: {
+      theme1: {
+        mainColor: "hsl(221, 14%, 31%)",
+        numbers: "hsl(0, 0%, 100%)",
+        field: "hsl(224, 36%, 15%)",
+        fieldButtons: "		hsl(223, 31%, 20%)",
+        button: "	hsl(30, 25%, 89%)",
+        resetdel: "rgb(100, 113, 152)",
+        gleich: "	rgb(208, 63, 47)",
+      },
+      theme2: {
+        button: "",
+      },
+      theme3: {
+        button: "",
+      },
+    },
     fontSize: {
       h1: [
         "56px",
