@@ -11,6 +11,9 @@ module.exports = {
         button: "	hsl(30, 25%, 89%)",
         resetdel: "rgb(100, 113, 152)",
         gleich: "	rgb(208, 63, 47)",
+        whiteHover: "rgb(255, 255, 254)",
+        darkHover: "rgba(162, 178, 225, 1)",
+        redHover: "rgba(249, 107, 91, 1)",
       },
       theme2: {
         button: "",
