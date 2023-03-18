@@ -19,14 +19,62 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         currentOperand: `${state.currentOperand || ""}${payload.digit}`,
+        displayDigit: true,
       };
+    case ACTIONS.CHOOSE_OPERATION:
+      if (state.currentOperand == null && state.previousOperand == null) {
+        return state;
+      }
+
+      if (state.previousOperand == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+          previousOperand: state.currentOperand,
+          currentOperand: null,
+        };
+      }
+
+      return {
+        ...state,
+        previousOperand: evaluate(state),
+        operation: payload.operation,
+        currentOperand: null,
+        displayDigit: false,
+      };
+
     case ACTIONS.RESET:
       return {};
   }
 }
 
+function evaluate({ currentOperand, previousOperand, operation }) {
+  const prev = parseFloat(previousOperand);
+  const current = parseFloat(currentOperand);
+  if (isNaN(prev) || isNaN(current)) return "";
+  let computation = "";
+  switch (operation) {
+    case "+":
+      computation = prev + current;
+      break;
+    case "-":
+      computation = prev - current;
+      break;
+    case "*":
+      computation = prev * current;
+      break;
+    case "/":
+      computation = prev / current;
+      break;
+  }
+  return computation.toString();
+}
+
 function App() {
-  const [{ currentOperand }, dispatch] = useReducer(reducer, {});
+  const [
+    { currentOperand, previousOperand, operation, displayDigit },
+    dispatch,
+  ] = useReducer(reducer, {});
 
   return (
     <div className="w-full h-screen flex items-center">
@@ -35,8 +83,12 @@ function App() {
           <p className="text-theme1-numbers text-calc">calc</p>
           <div className="text-theme1-numbers text-calc">switch</div>
         </div>
-        <div className="w-full bg-theme1-field text-right rounded-[10px] pt-10 pb-9 px-8 mb-6 ">
-          <p className="text-h1 text-theme1-numbers">{currentOperand}</p>
+        <div className="w-full bg-theme1-field text-right rounded-[10px] pt-10 pb-9 px-8 mb-6 min-h-[128px]">
+          <p className="text-h1 text-theme1-numbers">
+            {previousOperand == null || displayDigit
+              ? currentOperand
+              : previousOperand}
+          </p>
         </div>
         <div className=" p-8 bg-theme1-fieldButtons rounded-[10px]">
           <div className="grid grid-cols-4 gap-6 grid-rows-5">
