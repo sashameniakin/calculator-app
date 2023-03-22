@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import { useReducer } from "react";
 import Button from "./components/UI/Button";
 import OperationButton from "./components/UI/OperationButton";
@@ -13,6 +14,15 @@ export const ACTIONS = {
 function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
+      if (state.currentOperand && state.currentOperand.length > 14)
+        return state;
+      if (state.overwrite) {
+        return {
+          ...state,
+          currentOperand: payload.digit,
+          overwrite: false,
+        };
+      }
       if (payload.digit === "0" && state.currentOperand === "0") return state;
       if (payload.digit === "." && state.currentOperand.includes("."))
         return state;
@@ -26,12 +36,21 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
+      if (state.currentOperand == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+        };
+      }
+
       if (state.previousOperand == null) {
         return {
           ...state,
           operation: payload.operation,
           previousOperand: state.currentOperand,
+          digit: state.currentOperand,
           currentOperand: null,
+          displayDigit: true,
         };
       }
 
@@ -45,6 +64,37 @@ function reducer(state, { type, payload }) {
 
     case ACTIONS.RESET:
       return {};
+    case ACTIONS.DELETE_DIGIT:
+      if (state.overwrite) {
+        return {
+          ...state,
+          overwrite: false,
+          currentOperand: null,
+        };
+      }
+      if (state.currentOperand == null) return state;
+      if (state.currentOperand.length === 1) {
+        return { ...state, currentOperand: null };
+      }
+      return {
+        ...state,
+        currentOperand: state.currentOperand.slice(0, -1),
+      };
+    case ACTIONS.EVALUATE:
+      if (
+        state.operation == null ||
+        state.currentOperand == null ||
+        state.previousOperand == null
+      ) {
+        return state;
+      }
+      return {
+        ...state,
+        overwrite: true,
+        previousOperand: null,
+        operation: null,
+        currentOperand: evaluate(state),
+      };
   }
 }
 
@@ -60,7 +110,7 @@ function evaluate({ currentOperand, previousOperand, operation }) {
     case "-":
       computation = prev - current;
       break;
-    case "*":
+    case "x":
       computation = prev * current;
       break;
     case "/":
@@ -72,7 +122,7 @@ function evaluate({ currentOperand, previousOperand, operation }) {
 
 function App() {
   const [
-    { currentOperand, previousOperand, operation, displayDigit },
+    { currentOperand, previousOperand, operation, displayDigit, digit },
     dispatch,
   ] = useReducer(reducer, {});
 
@@ -85,8 +135,10 @@ function App() {
         </div>
         <div className="w-full bg-theme1-field text-right rounded-[10px] pt-10 pb-9 px-8 mb-6 min-h-[128px]">
           <p className="text-h1 text-theme1-numbers">
-            {previousOperand == null || displayDigit
-              ? currentOperand
+            {displayDigit
+              ? currentOperand == null
+                ? digit
+                : currentOperand
               : previousOperand}
           </p>
         </div>
@@ -117,13 +169,14 @@ function App() {
               white
               dispatch={dispatch}
             />
-            <Button
-              number="DEL"
-              textStyle="text-reset text-theme1-numbers"
-              BGcolor="bg-theme1-resetdel"
-              shadowColorDark
-              dark
-            />
+            <button
+              onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}
+              className="bg-theme1-resetdel hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center shadow-[inset_0_-4px_0_rgba(65,78,115)]"
+            >
+              <p className="text-reset text-theme1-numbers text-center my-3">
+                DEL
+              </p>
+            </button>
             <Button
               digit="4"
               textStyle="text-h2"
@@ -148,14 +201,7 @@ function App() {
               white
               dispatch={dispatch}
             />
-            <OperationButton
-              operation="+"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
-              white
-              dispatch={dispatch}
-            />
+            <OperationButton operation="+" dispatch={dispatch} />
             <Button
               digit="1"
               textStyle="text-h2"
@@ -180,14 +226,7 @@ function App() {
               white
               dispatch={dispatch}
             />
-            <OperationButton
-              operation="-"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
-              white
-              dispatch={dispatch}
-            />
+            <OperationButton operation="-" dispatch={dispatch} />
             <Button
               digit="."
               textStyle="text-h2"
@@ -204,22 +243,8 @@ function App() {
               white
               dispatch={dispatch}
             />
-            <OperationButton
-              operation="/"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
-              white
-              dispatch={dispatch}
-            />
-            <OperationButton
-              operation="x"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
-              white
-              dispatch={dispatch}
-            />
+            <OperationButton operation="/" dispatch={dispatch} />
+            <OperationButton operation="x" dispatch={dispatch} />
             <button
               className="bg-theme1-resetdel col-span-2 hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center shadow-[inset_0_-4px_0_rgba(65,78,115)]"
               onClick={() => dispatch({ type: ACTIONS.RESET })}
@@ -228,14 +253,14 @@ function App() {
                 RESET
               </p>
             </button>
-            <Button
-              number="="
-              textStyle="text-reset text-theme1-numbers"
-              BGcolor="bg-theme1-gleich"
-              big="col-span-2"
-              shadowColorRed
-              red
-            />
+            <button
+              className="bg-theme1-gleich col-span-2 hover:bg-theme1-redHover rounded-[10px] flex justify-center hover:cursor-pointer items-center shadow-[inset_0_-4px_0_rgba(147,38,26)]"
+              onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
+            >
+              <p className="text-reset text-theme1-numbers text-center my-3">
+                =
+              </p>
+            </button>
           </div>
         </div>
       </div>
