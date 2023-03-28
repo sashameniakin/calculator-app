@@ -11,7 +11,7 @@
   top: 0;
   padding-left: 5px;
   padding-right: 5px;
-
+  padding-top: 0.5px;
   width: 71px;
   height: 26px;
   border-radius: 13px;
@@ -19,12 +19,34 @@
   appearance: none;
   outline: none;
 }
+.slider::-webkit-slider-thumb:hover {
+  background: rgba(249, 107, 91, 1);
+}
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
+
   width: 16px;
   height: 16px;
   border-radius: 100%;
   background: rgba(208, 63, 47, 1);
   cursor: pointer;
+}
+.theme2 {
+  background: rgba(210, 205, 205, 1);
+}
+.theme2::-webkit-slider-thumb {
+  background: rgba(200, 84, 2, 1);
+}
+.theme2::-webkit-slider-thumb:hover {
+  background: rgba(255, 138, 56, 1);
+}
+.theme3 {
+  background: rgba(30, 9, 54, 1);
+}
+.theme3::-webkit-slider-thumb {
+  background: rgba(0, 222, 208, 1);
+}
+.theme3::-webkit-slider-thumb:hover {
+  background: rgba(147, 255, 248, 1);
 }

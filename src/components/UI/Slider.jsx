@@ -1,9 +1,6 @@
-import { useState } from "react";
 import "./Slider.css";
 
-function Slider() {
-  const [position, setPosition] = useState(0);
-
+function Slider({ position, setPosition }) {
   const handlePositionChange = (event) => {
     setPosition(parseInt(event.target.value));
   };
@@ -12,11 +9,17 @@ function Slider() {
     <div className="wrapper">
       <input
         type="range"
-        min="0"
-        max="2"
+        min="1"
+        max="3"
         value={position}
         onChange={handlePositionChange}
-        className="slider"
+        className={`${
+          position === 2
+            ? "slider theme2"
+            : position === 3
+            ? "slider theme3"
+            : "slider"
+        }`}
       />
     </div>
   );

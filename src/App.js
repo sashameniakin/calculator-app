@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import Button from "./components/UI/Button";
 import OperationButton from "./components/UI/OperationButton";
 import Slider from "./components/UI/Slider";
@@ -128,32 +128,80 @@ function App() {
     dispatch,
   ] = useReducer(reducer, {});
 
-  function handleToggleChange(position) {
-    console.log("kflsdjf");
-  }
+  const [position, setPosition] = useState(1);
 
   return (
-    <div className="w-full h-screen flex items-center">
+    <div
+      className={`w-full h-screen flex items-center ${
+        position === 2
+          ? "bg-theme2-mainColor"
+          : position === 3
+          ? "bg-theme3-mainColor"
+          : "bg-theme1-mainColor"
+      } `}
+    >
       <div className="flex flex-col w-[540px] mx-auto">
         <div className="flex justify-between mb-8 items-end">
-          <p className="text-theme1-numbers text-calc">calc</p>
+          <p
+            className={`${
+              position === 2
+                ? "text-theme2-pureBlack"
+                : position === 3
+                ? "text-theme3-yellow"
+                : "text-theme1-pureWhite"
+            } text-calc`}
+          >
+            calc
+          </p>
 
           <div className="flex items-end justify-center">
-            <p className="text-theme1-numbers text-theme flex mb-[6px] mr-[26px]">
+            <p
+              className={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-pureWhite"
+              }  text-theme flex mb-[6px] mr-[26px]`}
+            >
               THEME
             </p>
-            <div className="flex flex-col items-center gap-2 text-theme1-numbers">
-              <p className="flex gap-[10px] ml-1.5">
+            <div className="flex flex-col items-center gap-2">
+              <p
+                className={`flex gap-[10px] ml-1.5 ${
+                  position === 2
+                    ? "text-theme2-pureBlack"
+                    : position === 3
+                    ? "text-theme3-yellow"
+                    : "text-theme1-pureWhite"
+                } `}
+              >
                 <span className="w-[12px] h-[13px]">1</span>
                 <span className="w-[12px] h-[13px]">2</span>
                 <span className="w-[12px] h-[13px]">3</span>
               </p>
-              <Slider />
+              <Slider position={position} setPosition={setPosition} />
             </div>
           </div>
         </div>
-        <div className="w-full bg-theme1-field text-right rounded-[10px] pt-10 pb-9 px-8 mb-6 min-h-[128px]">
-          <p className="text-h1 text-theme1-numbers">
+        <div
+          className={`w-full ${
+            position === 2
+              ? "bg-theme2-field"
+              : position === 3
+              ? "bg-theme3-field"
+              : "bg-theme1-field"
+          } text-right rounded-[10px] pt-10 pb-9 px-8 mb-6 min-h-[128px]`}
+        >
+          <p
+            className={`text-h1 ${
+              position === 2
+                ? "text-theme2-pureBlack"
+                : position === 3
+                ? "text-theme3-yellow"
+                : "text-theme1-pureWhite"
+            }`}
+          >
             {displayDigit
               ? currentOperand == null
                 ? digit
@@ -161,122 +209,367 @@ function App() {
               : previousOperand}
           </p>
         </div>
-        <div className=" p-8 bg-theme1-fieldButtons rounded-[10px]">
+        <div
+          className={`p-8 ${
+            position === 2
+              ? "bg-theme2-fieldButtons"
+              : position === 3
+              ? "bg-theme3-fieldButtons"
+              : "bg-theme1-fieldButtons"
+          } rounded-[10px]`}
+        >
           <div className="grid grid-cols-4 gap-6 grid-rows-5">
             <Button
               digit="7"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }
+            
+              `}
               white
               display
               dispatch={dispatch}
+              position={position}
             />
             <Button
               digit="8"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
             <Button
               digit="9"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
             <button
               onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}
-              className="bg-theme1-resetdel hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center shadow-[inset_0_-4px_0_rgba(65,78,115)]"
+              className={`${
+                position === 2
+                  ? "bg-theme2-resetdel"
+                  : position === 3
+                  ? "bg-theme3-resetdel"
+                  : "bg-theme1-resetdel"
+              } hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center  ${
+                position === 2
+                  ? "shadow-[inset_0_-4px_0_rgba(27,96,102)]"
+                  : position === 3
+                  ? "shadow-[inset_0_-4px_0_rgba(190,21,244)]"
+                  : "shadow-[inset_0_-4px_0_rgba(65,78,115)]"
+              }
+              ${
+                position === 2
+                  ? "hover:bg-theme2-resetdelHover"
+                  : position === 3
+                  ? "hover:bg-theme3-resetdelHover"
+                  : "hover:bg-theme1-resetdelHover"
+              } 
+              `}
             >
-              <p className="text-reset text-theme1-numbers text-center my-3">
+              <p className="text-reset text-theme1-pureWhite text-center my-3">
                 DEL
               </p>
             </button>
             <Button
               digit="4"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
             <Button
               digit="5"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
             <Button
               digit="6"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
-            <OperationButton operation="+" dispatch={dispatch} />
+            <OperationButton
+              operation="+"
+              dispatch={dispatch}
+              position={position}
+            />
             <Button
               digit="1"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
             <Button
               digit="2"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
             <Button
               digit="3"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
-            <OperationButton operation="-" dispatch={dispatch} />
+            <OperationButton
+              operation="-"
+              dispatch={dispatch}
+              position={position}
+            />
             <Button
               digit="."
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
             <Button
               digit="0"
-              textStyle="text-h2"
-              BGcolor="bg-theme1-button"
-              shadowColor
+              textStyle={`${
+                position === 2
+                  ? "text-theme2-pureBlack"
+                  : position === 3
+                  ? "text-theme3-yellow"
+                  : "text-theme1-digit"
+              } text-h2`}
+              BGcolor={`
+              ${
+                position === 2
+                  ? "bg-theme2-button"
+                  : position === 3
+                  ? "bg-theme3-button"
+                  : "bg-theme1-button"
+              }`}
               white
               dispatch={dispatch}
+              position={position}
             />
-            <OperationButton operation="/" dispatch={dispatch} />
-            <OperationButton operation="x" dispatch={dispatch} />
+            <OperationButton
+              operation="/"
+              dispatch={dispatch}
+              position={position}
+            />
+            <OperationButton
+              operation="x"
+              dispatch={dispatch}
+              position={position}
+            />
             <button
-              className="bg-theme1-resetdel col-span-2 hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center shadow-[inset_0_-4px_0_rgba(65,78,115)]"
+              className={`${
+                position === 2
+                  ? "bg-theme2-resetdel"
+                  : position === 3
+                  ? "bg-theme3-resetdel"
+                  : "bg-theme1-resetdel"
+              }  col-span-2 hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center ${
+                position === 2
+                  ? "shadow-[inset_0_-4px_0_rgba(27,96,102)]"
+                  : position === 3
+                  ? "shadow-[inset_0_-4px_0_rgba(190,21,244)]"
+                  : "shadow-[inset_0_-4px_0_rgba(65,78,115)]"
+              }
+              ${
+                position === 2
+                  ? "hover:bg-theme2-resetdelHover"
+                  : position === 3
+                  ? "hover:bg-theme3-resetdelHover"
+                  : "hover:bg-theme1-resetdelHover"
+              } 
+              `}
               onClick={() => dispatch({ type: ACTIONS.RESET })}
             >
-              <p className="text-reset text-theme1-numbers text-center my-3">
+              <p
+                className={`text-reset ${
+                  position === 2
+                    ? "text-theme2-pureWhite"
+                    : position === 3
+                    ? "text-theme3-pureWhite"
+                    : "text-theme1-pureWhite"
+                } text-center my-3`}
+              >
                 RESET
               </p>
             </button>
             <button
-              className="bg-theme1-gleich col-span-2 hover:bg-theme1-redHover rounded-[10px] flex justify-center hover:cursor-pointer items-center shadow-[inset_0_-4px_0_rgba(147,38,26)]"
+              className={`${
+                position === 2
+                  ? "bg-theme2-gleich"
+                  : position === 3
+                  ? "bg-theme3-gleich"
+                  : "bg-theme1-gleich"
+              } col-span-2 hover:bg-theme1-redHover rounded-[10px] flex justify-center hover:cursor-pointer items-center ${
+                position === 2
+                  ? "shadow-[inset_0_-4px_0_rgba(135,57,1)]"
+                  : position === 3
+                  ? "shadow-[inset_0_-4px_0_rgba(108,249,241)]"
+                  : "shadow-[inset_0_-4px_0_rgba(147,38,26)]"
+              } 
+              ${
+                position === 2
+                  ? "hover:bg-theme2-gleichHover"
+                  : position === 3
+                  ? "hover:bg-theme3-gleichHover"
+                  : "hover:bg-theme1-gleichHover"
+              } 
+              `}
               onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
             >
-              <p className="text-reset text-theme1-numbers text-center my-3">
+              <p
+                className={`text-reset ${
+                  position === 2
+                    ? "text-theme2-pureWhite"
+                    : position === 3
+                    ? "text-theme3-pureBlack"
+                    : "text-theme1-pureWhite"
+                } text-center my-3`}
+              >
                 =
               </p>
             </button>
