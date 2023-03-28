@@ -2,6 +2,7 @@
 import { useReducer } from "react";
 import Button from "./components/UI/Button";
 import OperationButton from "./components/UI/OperationButton";
+import Slider from "./components/UI/Slider";
 
 export const ACTIONS = {
   ADD_DIGIT: "add-digit",
@@ -76,6 +77,7 @@ function reducer(state, { type, payload }) {
       if (state.currentOperand.length === 1) {
         return { ...state, currentOperand: null };
       }
+
       return {
         ...state,
         currentOperand: state.currentOperand.slice(0, -1),
@@ -126,12 +128,29 @@ function App() {
     dispatch,
   ] = useReducer(reducer, {});
 
+  function handleToggleChange(position) {
+    console.log("kflsdjf");
+  }
+
   return (
     <div className="w-full h-screen flex items-center">
       <div className="flex flex-col w-[540px] mx-auto">
-        <div className="flex justify-between mb-8">
+        <div className="flex justify-between mb-8 items-end">
           <p className="text-theme1-numbers text-calc">calc</p>
-          <div className="text-theme1-numbers text-calc">switch</div>
+
+          <div className="flex items-end justify-center">
+            <p className="text-theme1-numbers text-theme flex mb-[6px] mr-[26px]">
+              THEME
+            </p>
+            <div className="flex flex-col items-center gap-2 text-theme1-numbers">
+              <p className="flex gap-[10px] ml-1.5">
+                <span className="w-[12px] h-[13px]">1</span>
+                <span className="w-[12px] h-[13px]">2</span>
+                <span className="w-[12px] h-[13px]">3</span>
+              </p>
+              <Slider />
+            </div>
+          </div>
         </div>
         <div className="w-full bg-theme1-field text-right rounded-[10px] pt-10 pb-9 px-8 mb-6 min-h-[128px]">
           <p className="text-h1 text-theme1-numbers">

@@ -1,0 +1,30 @@
+.wrapper {
+  position: relative;
+  width: 71px;
+  height: 26px;
+  background: hsl(223, 31%, 20%);
+  cursor: pointer;
+  border-radius: 50px;
+}
+.slider {
+  position: absolute;
+  top: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  width: 71px;
+  height: 26px;
+  border-radius: 13px;
+  background: rgba(36, 45, 68, 1);
+  appearance: none;
+  outline: none;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  background: rgba(208, 63, 47, 1);
+  cursor: pointer;
+}
