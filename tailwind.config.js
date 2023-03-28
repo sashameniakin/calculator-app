@@ -55,6 +55,14 @@ module.exports = {
           letterSpacing: "-0.53px",
         },
       ],
+      theme: [
+        "12px",
+        {
+          fontWeight: "700",
+          lineHeight: "11.04px",
+          letterSpacing: "1px",
+        },
+      ],
     },
     extend: {},
   },
