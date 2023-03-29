@@ -9,7 +9,7 @@ export default function OperationButton({ dispatch, operation, position }) {
           : position === 3
           ? "text-theme3-yellow"
           : "text-theme1-digit"
-      }  text-h2  ${
+      }  text-calc desktop:text-h2  ${
         position === 2
           ? "bg-theme2-button"
           : position === 3
