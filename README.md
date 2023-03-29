@@ -1,5 +1,5 @@
 # Claculator App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I have built the site for a calculator app. The website is responsive, you can use it on your phone, or normal desktop in 3 styles.
 
 
