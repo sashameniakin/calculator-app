@@ -140,7 +140,7 @@ function App() {
           : "bg-theme1-mainColor"
       } `}
     >
-      <div className="flex flex-col w-[540px] mx-auto">
+      <div className="flex flex-col w-[327px] mx-auto desktop:w-[540px] desktop:mx-auto">
         <div className="flex justify-between mb-8 items-end">
           <p
             className={`${
@@ -191,10 +191,10 @@ function App() {
               : position === 3
               ? "bg-theme3-field"
               : "bg-theme1-field"
-          } text-right rounded-[10px] pt-10 pb-9 px-8 mb-6 min-h-[128px]`}
+          } text-right rounded-[10px] pt-[29px] pb-[22px] px-6 desktop:pt-10 desktop:pb-9 desktop:px-8 mb-6 min-h-[88px] desktop:min-h-[128px]`}
         >
           <p
-            className={`text-h1 ${
+            className={`text-h2 desktop:text-h1 ${
               position === 2
                 ? "text-theme2-pureBlack"
                 : position === 3
@@ -210,7 +210,7 @@ function App() {
           </p>
         </div>
         <div
-          className={`p-8 ${
+          className={`p-4  desktop:p-8 ${
             position === 2
               ? "bg-theme2-fieldButtons"
               : position === 3
@@ -218,7 +218,7 @@ function App() {
               : "bg-theme1-fieldButtons"
           } rounded-[10px]`}
         >
-          <div className="grid grid-cols-4 gap-6 grid-rows-5">
+          <div className="grid grid-cols-4 gap-3 desktop:gap-6 grid-rows-5">
             <Button
               digit="7"
               textStyle={`${
@@ -227,7 +227,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -235,11 +235,7 @@ function App() {
                   : position === 3
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
-              }
-            
-              `}
-              white
-              display
+              }`}
               dispatch={dispatch}
               position={position}
             />
@@ -251,7 +247,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -260,7 +256,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -272,7 +267,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -281,7 +276,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -293,7 +287,7 @@ function App() {
                   : position === 3
                   ? "bg-theme3-resetdel"
                   : "bg-theme1-resetdel"
-              } hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center  ${
+              } rounded-[10px] flex justify-center hover:cursor-pointer items-center  ${
                 position === 2
                   ? "shadow-[inset_0_-4px_0_rgba(27,96,102)]"
                   : position === 3
@@ -309,7 +303,7 @@ function App() {
               } 
               `}
             >
-              <p className="text-reset text-theme1-pureWhite text-center my-3">
+              <p className="text-resetMobile desktop:text-reset text-theme1-pureWhite text-center my-3">
                 DEL
               </p>
             </button>
@@ -321,7 +315,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -330,7 +324,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -342,7 +335,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -351,7 +344,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -363,7 +355,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -372,7 +364,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -389,7 +380,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -398,7 +389,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -410,7 +400,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -419,7 +409,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -431,7 +420,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -440,7 +429,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -457,7 +445,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -466,7 +454,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -478,7 +465,7 @@ function App() {
                   : position === 3
                   ? "text-theme3-yellow"
                   : "text-theme1-digit"
-              } text-h2`}
+              } text-calc desktop:text-h2`}
               BGcolor={`
               ${
                 position === 2
@@ -487,7 +474,6 @@ function App() {
                   ? "bg-theme3-button"
                   : "bg-theme1-button"
               }`}
-              white
               dispatch={dispatch}
               position={position}
             />
@@ -508,7 +494,7 @@ function App() {
                   : position === 3
                   ? "bg-theme3-resetdel"
                   : "bg-theme1-resetdel"
-              }  col-span-2 hover:bg-theme1-darkHover rounded-[10px] flex justify-center hover:cursor-pointer items-center ${
+              }  col-span-2 rounded-[10px] flex justify-center hover:cursor-pointer items-center ${
                 position === 2
                   ? "shadow-[inset_0_-4px_0_rgba(27,96,102)]"
                   : position === 3
@@ -526,7 +512,7 @@ function App() {
               onClick={() => dispatch({ type: ACTIONS.RESET })}
             >
               <p
-                className={`text-reset ${
+                className={`text-resetMobile desktop:text-reset ${
                   position === 2
                     ? "text-theme2-pureWhite"
                     : position === 3
@@ -544,7 +530,7 @@ function App() {
                   : position === 3
                   ? "bg-theme3-gleich"
                   : "bg-theme1-gleich"
-              } col-span-2 hover:bg-theme1-redHover rounded-[10px] flex justify-center hover:cursor-pointer items-center ${
+              } col-span-2 rounded-[10px] flex justify-center hover:cursor-pointer items-center ${
                 position === 2
                   ? "shadow-[inset_0_-4px_0_rgba(135,57,1)]"
                   : position === 3
@@ -562,7 +548,7 @@ function App() {
               onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
             >
               <p
-                className={`text-reset ${
+                className={`text-resetMobile desktop:text-reset ${
                   position === 2
                     ? "text-theme2-pureWhite"
                     : position === 3

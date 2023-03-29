@@ -1,20 +1,16 @@
 import { ACTIONS } from "../../App";
 
 export default function Button({
-  big,
+  digit,
   textStyle,
   BGcolor,
-  white,
-  dark,
-  red,
   dispatch,
-  digit,
   position,
 }) {
   return (
     <button
       onClick={() => dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit } })}
-      className={`${BGcolor} ${big} ${
+      className={`${BGcolor} ${
         position === 2
           ? "hover:bg-theme2-digitHover"
           : position === 3
@@ -28,7 +24,7 @@ export default function Button({
           ? "shadow-[inset_0_-4px_0_rgba(136,28,158)]"
           : "shadow-[inset_0_-4px_0_rgba(179,164,151)]"
       } 
-      `}
+      h-[64px]`}
     >
       <p className={`${textStyle} text-center my-3`}>{digit}</p>
     </button>

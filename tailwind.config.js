@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      desktop: "821px",
+      tablet: "415px",
+    },
     colors: {
       theme1: {
         mainColor: "hsl(221, 14%, 31%)",
@@ -67,6 +71,14 @@ module.exports = {
           fontWeight: "700",
           lineHeight: "25.76px",
           letterSpacing: "-0.47px",
+        },
+      ],
+      resetMobile: [
+        "20px",
+        {
+          fontWeight: "700",
+          lineHeight: "18.4px",
+          letterSpacing: "-0.33px",
         },
       ],
       calc: [
